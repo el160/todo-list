@@ -44,5 +44,21 @@ def todo(request):
         res=TODO.objects.filter(user=request.user).order_by('-date')
         return redirect('/todopage',{'res':res})
     res=TODO.objects.filter(user=request.user).order_by('-date')
-    return render(request,'todo.html')
+    return render(request,'todo.html',{'res':res})
+
+
+
+def edit_todo(request,srno):
+    if request.method=='POST':
+        title=request.POST.get('title')
+        print(title)
+        object=TODO.objects.get(srno=srno)
+        object.title=title
+        object.save()
+        user=request.user
+        res=TODO.objects.filter(user=request.user).order_by('-date')
+        return redirect('/todopage',{'res':res})
+    res=TODO.objects.filter(user=request.user).order_by('-date')
+    return render(request,'todo.html',{'res':res})
+    
         

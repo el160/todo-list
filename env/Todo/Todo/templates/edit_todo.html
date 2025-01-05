@@ -24,7 +24,7 @@
             <form method= "POST">
             {% csrf_token %}
             <input type="text" class="input" placeholder="Enter your task" name="title">
-            <input type="submit" class="submit-button" value="Add Task">
+            <input type="submit" class="submit-button" value="update Task">
 
             </form>
 {% for todo in res%}
@@ -32,7 +32,7 @@
     <h5>{{todo.srno}}</h5>
     <p>{{todo.title}}</p>
     <div>
-        <a href="/edit_todo/{{todo.srno}}"><i class="fa-solid fa-pen-to-square"></i></a>
+        <a href=""><i class="fa-solid fa-pen-to-square"></i></a>
         <a href=""><i class="fa-solid fa-trash"></i></a>
     </div>
 </div>
