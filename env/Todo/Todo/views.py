@@ -19,7 +19,7 @@ def signup(request):
     
     return render(request, 'signup.html')
 
-def login(request):
+def loginn(request):
     if request.method=='POST':
         ljh = request.POST.get('ljh')
         pwd = request.POST.get('pwd')
@@ -34,4 +34,15 @@ def login(request):
 
     return render(request, 'login.html')
         
+        
+def todo(request):
+    if request.method=='POST':
+        title=request.POST.get('title')
+        print(title)
+        object=TODO(title=title,user=request.user)
+        object.save()
+        res=TODO.objects.filter(user=request.user).order_by('-date')
+        return redirect('/todopage',{'res':res})
+    res=TODO.objects.filter(user=request.user).order_by('-date')
+    return render(request,'todo.html')
         
