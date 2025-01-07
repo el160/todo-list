@@ -33,7 +33,7 @@
     <p>{{todo.title}}</p>
     <div>
         <a href="/edit_todo/{{todo.srno}}"><i class="fa-solid fa-pen-to-square"></i></a>
-        <a href=""><i class="fa-solid fa-trash"></i></a>
+        <a href="/delete_todo/{{todo.srno}}"><i class="fa-solid fa-trash"></i></a>
     </div>
 </div>
 
@@ -46,6 +46,6 @@
                 
     </div>
 </div>
+<script src="{% static 'js/sript.js' %}"></script>
 </body>
-    
 </html> 

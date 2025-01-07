@@ -8,32 +8,32 @@
     <link rel="stylesheet" href="{% static 'css/index.css' %}" />
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" />
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Font Awesome 5 Brands:wght@400&display=swap" />
-        <script src="https://kit.fontawesome.com/cb792c0850.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/cb792c0850.js" crossorigin="anonymous"></script>
 </head>
 <body>
 <div class="signup-login">
     <div class = "signup-box">
+    </div>
         <div><h1>Hello {{user}}</h1></div>
         
-            <div class="heading">
-                What Do You Want To Do ?
-            </div>
-            <i class="fa-solid fa-right-from-bracket"></i>
-            <form method= "POST">
+    <div class="heading">
+    <p>What Do You Want To Do ?</p>
+    </div>
+    <i class="fa-solid fa-right-from-bracket" title="Logout"></i>
+    <form method= "POST">
             {% csrf_token %}
-            <input type="text" class="input" placeholder="Enter your task" name="title">
+            <label for="title">Task:</label>
+            <input type="text" class="input" placeholder="Enter your task" name="title" required>
             <input type="submit" class="submit-button" value="update Task">
 
-            </form>
+    </form>
 {% for todo in res%}
 <div class="Todo">
     <h5>{{todo.srno}}</h5>
     <p>{{todo.title}}</p>
     <div>
-        <a href=""><i class="fa-solid fa-pen-to-square"></i></a>
-        <a href=""><i class="fa-solid fa-trash"></i></a>
+        <a href="{% url 'edit_task' todo.srno %}" title="Edit Task"><i class="fa-solid fa-pen-to-square"></i></a>
+        <a href="{% url 'delete_task' todo.srno %}" title="Delete Task"><i class="fa-solid fa-trash"></i></a>
     </div>
 </div>
 
@@ -46,6 +46,6 @@
                 
     </div>
 </div>
+<script src="{% static 'js/script.js' %}"></script>
 </body>
-    
 </html> 
