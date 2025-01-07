@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from .models import TODO  
 from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth.decorators import login_required
 def signup(request):
     if request.method=='POST':
         ljh = request.POST.get('ljh')
@@ -35,6 +36,7 @@ def loginn(request):
     return render(request, 'login.html')
         
         
+@login_required(login_url='/loginn')
 def todo(request):
     if request.method=='POST':
         title=request.POST.get('title')
@@ -48,6 +50,7 @@ def todo(request):
 
 
 
+@login_required(login_url='/loginn')
 def edit_todo(request,srno):
     if request.method=='POST':
         title=request.POST.get('title')
@@ -63,7 +66,13 @@ def edit_todo(request,srno):
     return render(request,'todo.html')
     
 
+@login_required(login_url='/loginn')
 def delete_todo(request,srno):
     object=TODO.objects.get(srno=srno)
     object.delete()
     return redirect('/todopage')
+
+def signout(request):
+    logout(request)
+    return redirect('/login')
+    
