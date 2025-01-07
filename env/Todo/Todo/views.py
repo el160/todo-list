@@ -56,9 +56,14 @@ def edit_todo(request,srno):
         object.title=title
         object.save()
         user=request.user
-        res=TODO.objects.filter(user=request.user).order_by('-date')
-        return redirect('/todopage',{'res':res})
-    res=TODO.objects.filter(user=request.user).order_by('-date')
-    return render(request,'todo.html',{'res':res})
-    
         
+        return redirect('/todopage',{"object":object})
+    object=TODO.objects.get(srno=srno)
+    
+    return render(request,'todo.html')
+    
+
+def delete_todo(request,srno):
+    object=TODO.objects.get(srno=srno)
+    object.delete()
+    return redirect('/todopage')

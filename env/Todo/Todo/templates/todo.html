@@ -20,6 +20,7 @@
             <div class="heading">
                 What Do You Want To Do ?
             </div>
+            <div class="anchor"><a href="{% url 'signout'%}"></a></div>
             <i class="fa-solid fa-right-from-bracket"></i>
             <form method= "POST">
             {% csrf_token %}
@@ -33,7 +34,7 @@
     <p>{{todo.title}}</p>
     <div>
         <a href="/edit_todo/{{todo.srno}}"><i class="fa-solid fa-pen-to-square"></i></a>
-        <a href=""><i class="fa-solid fa-trash"></i></a>
+        <a href="/delete_todo/{{todo.srno}}"><i class="fa-solid fa-trash"></i></a>
     </div>
 </div>
 

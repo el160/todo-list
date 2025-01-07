@@ -14,7 +14,7 @@
 </head>
 <body>
 <div class="signup-login">
-    <div class = "signup-box">
+    <div class = "signup-box scr">
         <div><h1>Hello {{user}}</h1></div>
         
             <div class="heading">
@@ -23,7 +23,8 @@
             <i class="fa-solid fa-right-from-bracket"></i>
             <form method= "POST">
             {% csrf_token %}
-            <input type="text" class="input" placeholder="Enter your task" name="title">
+            <input type="text" class="input" placeholder="Enter your task" name="title" value={{object.title}}>
+
             <input type="submit" class="submit-button" value="update Task">
 
             </form>
